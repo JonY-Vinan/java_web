@@ -36,8 +36,8 @@ public abstract class DaoClienteJdbc extends DaoJdbc implements DaoCliente {
 		var password = rs.getString("password");
 		var telefono = rs.getInt("telefono");
 		var sFecha = rs.getString("fechaAlta");
-
 		LocalDate fechaAlta = sFecha != null ? LocalDate.parse(sFecha) : null;
+
 		Cliente cliente;
 		cliente = new Cliente(idUsuario, login, email, nombre, status, privilege, tipoUsuario, password, telefono,
 				fechaAlta);
@@ -46,26 +46,20 @@ public abstract class DaoClienteJdbc extends DaoJdbc implements DaoCliente {
 
 	protected static void clienteAFila(Cliente cliente, PreparedStatement pst) {
 		try {
-			if (cliente.getNombre() != null && cliente.getIdUsuario() != null) {
-				pst.setLong(0, cliente.getIdUsuario());
-			}
+
 			if (cliente.getNombre() != null) {
 				pst.setString(1, cliente.getLogin());
 				pst.setString(2, cliente.getEmail());
 				pst.setString(3, cliente.getNombre());
-				pst.setString(4, cliente.getPassword());
-				UserStatus st = cliente.getStatus();
-				UserPrivilege up = cliente.getPrivilege();
-				TipoUsuario tp = cliente.getTipoUsuario();
-				int tipo = tp.ordinal();
-				int privilegio = up.ordinal();
-				int estado = st.ordinal();
-				pst.setInt(5, estado);
-				pst.setInt(6, privilegio);
-				pst.setInt(7, tipo);
+				pst.setString(4, cliente.getStatus().name());
+				pst.setString(5, cliente.getPrivilege().name());
+				pst.setString(6, cliente.getTipoUsuario().name());
+				pst.setString(7, cliente.getPassword());
 				pst.setInt(8, cliente.getTelefono());
-				Date fecha = cambiarADate(cliente.getFechaAlta());
-				pst.setDate(9, fecha);
+				pst.setString(9, cliente.getFechaAlta().toString());
+			}
+			if (cliente.getNombre() != null && cliente.getIdUsuario() != null) {
+				pst.setLong(10, cliente.getIdUsuario());
 			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("No se han asociado bien los datos a la consulta", e);

@@ -36,13 +36,17 @@ public class Aplicacion {
 	private static Object modificarCliente() {
 		var id = Util.leerInt("Dime el id a modificar");
 		var cliente = DAO.obtenerPorId((long) id);
+		System.out.println(cliente.toString());
+		cliente.setDatos(cliente.getIdUsuario());
 		DAO.modificar(cliente);
 		return cliente;
 	}
 
 	private static void borrarUsuarioPorId() {
 		var id = Util.leerInt("Dime el id a borrar");
-		DAO.borrar((long) id);
+		var cl = DAO.obtenerPorId((long)id);
+		System.out.println(cl.toString());
+		DAO.borrar(cl.getIdUsuario());
 	}
 
 	private static void buscarUsuariosPorId() {

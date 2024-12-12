@@ -338,7 +338,7 @@ public class Util {
 		String fechaAux;
 		LocalDate date = null;
 		boolean error;
-		DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		System.out.println(mensaje);
 		do {
 			error = false;
@@ -348,7 +348,7 @@ public class Util {
 				date = LocalDate.parse(fechaAux, formateador);
 			} catch (DateTimeParseException e) {
 				error = true;
-				System.out.println("Error, introduce fecha con formato dd/mm/aaaa: ");
+				System.out.println("Error, introduce fecha con formato dd-mm-aaaa: ");
 			}
 		} while (error);
 		return date;

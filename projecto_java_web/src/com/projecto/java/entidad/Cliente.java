@@ -1,6 +1,7 @@
 package com.projecto.java.entidad;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -71,16 +72,16 @@ public class Cliente extends Usuario implements Serializable {
 		return super.toString() + " Telefono=" + telefono + " Fecha alta " + fechaAlta;
 	}
 
-	public void setDatos(Long idUsuario) {
-		super.setDatos(idUsuario);
+	public void setDatos(Long id) {
+		super.setDatos(id);
 		telefono = Util.leerInt("telefono: ");
-		fechaAlta = LocalDate.now();
+		fechaAlta = Util.leerFecha("fecha alta: ");
 	}
 
 	public void setDatos() {
 		super.setDatos();
 		telefono = Util.leerInt("telefono: ");
-		fechaAlta = LocalDate.now();
+		fechaAlta = Util.leerFecha("fecha alta: ");
 	}
 
 }
