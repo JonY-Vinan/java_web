@@ -194,7 +194,7 @@ public class Usuario implements Serializable {
 	}
 
 	public void setDatos() {
-		idUsuario = (long) Util.leerInt("Id: ");
+		//idUsuario = (long) Util.leerInt("Id: ");
 		login = Util.leerCadena("login: ");
 		email = Util.leerCadena("email: ");
 		nombre = Util.leerCadena("nombre: ");

@@ -19,10 +19,9 @@ public class Cliente extends Usuario implements Serializable {
 
 	}
 
-	public Cliente(Long idUsuario, String login, String email, String fullName, UserStatus status,
-			UserPrivilege privilege, TipoUsuario tipoUsuario, String password, LocalDate lastAccess, int telefono,
-			LocalDate fechaAlta) {
-		super(idUsuario, login, email, fullName, status, privilege, tipoUsuario, password);
+	public Cliente(Long idUsuario, String login, String email, String nombre, UserStatus status,
+			UserPrivilege privilege, TipoUsuario tipoUsuario, String password, int telefono, LocalDate fechaAlta) {
+		super(idUsuario, login, email, nombre, status, privilege, tipoUsuario, password);
 		this.telefono = telefono;
 		this.fechaAlta = fechaAlta;
 	}
@@ -74,6 +73,12 @@ public class Cliente extends Usuario implements Serializable {
 
 	public void setDatos(Long idUsuario) {
 		super.setDatos(idUsuario);
+		telefono = Util.leerInt("telefono: ");
+		fechaAlta = LocalDate.now();
+	}
+
+	public void setDatos() {
+		super.setDatos();
 		telefono = Util.leerInt("telefono: ");
 		fechaAlta = LocalDate.now();
 	}

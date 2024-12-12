@@ -17,13 +17,13 @@ public class GestionFactoria {
 			Properties props = new Properties();
 			//props.load(GestionFactoria.class.getClassLoader().getResourceAsStream("config.properties"));
 			props.load(GestionFactoria.class.getClassLoader().getResourceAsStream("configuracion.properties"));
-			var dao = props.getProperty("dao.implementacion");
+			var daoClienteClase = props.getProperty("dao.implementacion");
 			var url = props.getProperty("dao.url");
 			var user = props.getProperty("dao.user");
 			var pass = props.getProperty("dao.pass");
 
-			daoCliente = (DaoCliente) Class.forName(dao).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
-
+			daoCliente = (DaoCliente) Class.forName(daoClienteClase).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
+			//daoProducto = (DaoProducto) Class.forName(daoProductoClase).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException | ClassNotFoundException | IOException e) {
 			throw new GestionFactoriaException("No se ha podido inicializar la fábrica", e);
