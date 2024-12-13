@@ -1,17 +1,18 @@
 package com.projecto.java.app;
 
-import java.util.Iterator;
-
 import com.projecto.java.biblioteca.Util;
 import com.projecto.java.dao.DaoCliente;
+import com.projecto.java.dao.DaoReserva;
 import com.projecto.java.entidad.Cliente;
+import com.projecto.java.entidad.Reserva;
 import com.projecto.java.fatoria.GestionFactoria;
 
 public class Aplicacion {
 
 	private static final int SALIR = 0;
 
-	private static final DaoCliente DAO = GestionFactoria.getDaoCliente();
+	private static final DaoCliente DAO_Cliente = GestionFactoria.getDaoCliente();
+	private static final DaoReserva DAO_Reserva = GestionFactoria.getDaoReserva();
 
 	// private static final boolean SIN_ID = false;
 	public static void main(String[] args) {
@@ -27,6 +28,8 @@ public class Aplicacion {
 			case 4 -> borrarUsuarioPorId();
 			case 5 -> modificarCliente();
 			case 6 -> buscarUsuarioNombre();
+			case 7 -> crearNuevaReserva();
+			case 8 -> listadoReservas();
 			case 0 -> System.out.println("Gracias por usar nuestra aplicacion");
 
 			default -> throw new IllegalArgumentException("Unexpected value: " + opc);
@@ -36,61 +39,79 @@ public class Aplicacion {
 
 	}
 
+	private static void listadoReservas() {
+		var reserva = DAO_Reserva.obtenerTodos();
+		mostrarLista(reserva);
+	}
+
+	private static Reserva crearNuevaReserva() {
+		var reserva = nuevaReserva();
+		DAO_Reserva.insertar(reserva);
+		return reserva;
+	}
+
 	private static void CrearNuevoUsuario() {
 		var client = nuevoUsuario();
-		DAO.insertar(client);
+		DAO_Cliente.insertar(client);
 	}
 
 	private static void listaUsuarios() {
-		var clientes = DAO.obtenerTodos();
-		mostrarListaClientes(clientes);
+		var clientes = DAO_Cliente.obtenerTodos();
+		mostrarLista(clientes);
 	}
 
 	private static void buscarUsuariosPorId() {
 		Long id = (long) Util.leerInt("Dime el id");
-		var cliente = DAO.obtenerPorId(id);
+		var cliente = DAO_Cliente.obtenerPorId(id);
 		mostrarLineaProducto(cliente);
 	}
 
 	private static void buscarUsuarioNombre() {
 		var nombre = Util.leerCadena("Dime el nombre");
-		var cliente = DAO.obtenerPorNombreParcial(nombre);
-		mostrarListaClientes(cliente);
+		var cliente = DAO_Cliente.obtenerPorNombreParcial(nombre);
+		mostrarLista(cliente);
 	}
 
 	private static Object modificarCliente() {
 		var id = Util.leerInt("Dime el id a modificar");
-		var cliente = DAO.obtenerPorId((long) id);
+		var cliente = DAO_Cliente.obtenerPorId((long) id);
 		System.out.println(cliente.toString());
 		cliente.setDatos(cliente.getIdUsuario());
-		DAO.modificar(cliente);
+		DAO_Cliente.modificar(cliente);
 		return cliente;
 	}
 
 	private static void borrarUsuarioPorId() {
 		var id = Util.leerInt("Dime el id a borrar");
-		var cl = DAO.obtenerPorId((long) id);
+		var cl = DAO_Cliente.obtenerPorId((long) id);
 		System.out.println(cl.toString());
-		DAO.borrar(cl.getIdUsuario());
+		DAO_Cliente.borrar(cl.getIdUsuario());
 	}
 
-	private static void mostrarListaClientes(Iterable<Cliente> clientes) {
-		clientes.forEach(p -> mostrarLineaProducto(p));
+	@SuppressWarnings("unused")
+	private static <T> void mostrarLista(Iterable<T> lista) {
+		lista.forEach(p -> mostrarLineaProducto(p));
 	}
 
-	private static void mostrarLineaProducto(Cliente p) {
+	private static <T> void mostrarLineaProducto(T p) {
 		System.out.println(p.toString());
 	}
 
 	private static int menu() {
 		int respuesta = Util.leerInt("""
 				** M E N U **
-				1.-Nuevo cliente
-				2.-Listar cliente
-				3.-Buscar cliente por id
-				4.-Borrar cliente por id
-				5.-Modificar cliente
-				6.-Buscar por nombre
+				01.-Nuevo cliente
+				02.-Listar cliente
+				03.-Buscar cliente por id
+				04.-Borrar cliente por id
+				05.-Modificar cliente
+				06.-Buscar por nombre
+				07.-Nueva reserva
+				08.-Lists reserva
+				09.-Buscar reserva por nombre
+				10.-Busvar reserva por apellido
+				11.-Modificar reserva
+				12.-Eliminar reverva
 				0.-SALIR
 				elige una opcion:
 				""");
@@ -101,5 +122,11 @@ public class Aplicacion {
 		var cliente = new Cliente();
 		cliente.setDatos();
 		return cliente;
+	}
+
+	public static Reserva nuevaReserva() {
+		var reserva = new Reserva();
+		reserva.setDatos();
+		return reserva;
 	}
 }
