@@ -61,6 +61,10 @@ public abstract class DaoClienteJdbc extends DaoJdbc implements DaoCliente {
 			if (cliente.getNombre() != null && cliente.getIdUsuario() != null) {
 				pst.setLong(10, cliente.getIdUsuario());
 			}
+			
+			if (cliente.getNombre() == null && cliente.getIdUsuario() != null) {
+				pst.setLong(1, cliente.getIdUsuario());
+			}
 		} catch (SQLException e) {
 			throw new AccesoDatosException("No se han asociado bien los datos a la consulta", e);
 		}

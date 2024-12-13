@@ -33,6 +33,7 @@ public class Cliente extends Usuario implements Serializable {
 		this.fechaAlta = fechaAlta;
 	}
 
+
 	public int getTelefono() {
 		return telefono;
 	}
