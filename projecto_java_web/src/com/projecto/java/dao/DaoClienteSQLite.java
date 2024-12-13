@@ -7,7 +7,7 @@ public class DaoClienteSQLite extends DaoClienteJdbc implements DaoCliente {
 
 	private static final String SQL_SELECT = ("SELECT * FROM Clientes");
 	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE idUsuario = ?";
-	private static final String SQL_SELECT_NOMBRE = SQL_SELECT + " WHERE nombre = ?";
+	private static final String SQL_SELECT_NOMBRE = SQL_SELECT + " WHERE nombre LIKE ?";
 	private static final String SQL_INSERT = "INSERT INTO Clientes (login, email, nombre, status, privilege, tipoUsuario, password, telefono,fechaAlta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String SQL_UPDATE = "UPDATE Clientes SET login = ?, email = ?, nombre = ?, status = ?, privilege = ?, tipoUsuario = ?, password = ?, telefono = ?, fechaAlta = ? WHERE idUsuario = ?";
 	private static final String SQL_DELETE = "DELETE FROM Clientes WHERE idUsuario = ?";
@@ -46,8 +46,7 @@ public class DaoClienteSQLite extends DaoClienteJdbc implements DaoCliente {
 
 	@Override
 	public Iterable<Cliente> obtenerPorNombreParcial(String nombre) {
-		return (Iterable<Cliente>) ejecutarConsulta(SQL_SELECT_NOMBRE,
-				pst -> datosSentencia(pst, "%" + nombre + "%"));
+		return ejecutarConsulta(SQL_SELECT_NOMBRE,pst -> datosSentencia(pst, "%" + nombre + "%"));
 	}
 
 	static {

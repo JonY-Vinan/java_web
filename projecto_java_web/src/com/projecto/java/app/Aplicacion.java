@@ -1,5 +1,7 @@
 package com.projecto.java.app;
 
+import java.util.Iterator;
+
 import com.projecto.java.biblioteca.Util;
 import com.projecto.java.dao.DaoCliente;
 import com.projecto.java.entidad.Cliente;
@@ -11,7 +13,7 @@ public class Aplicacion {
 
 	private static final DaoCliente DAO = GestionFactoria.getDaoCliente();
 
-	//private static final boolean SIN_ID = false;
+	// private static final boolean SIN_ID = false;
 	public static void main(String[] args) {
 		var opc = 0;
 
@@ -24,6 +26,7 @@ public class Aplicacion {
 			case 3 -> buscarUsuariosPorId();
 			case 4 -> borrarUsuarioPorId();
 			case 5 -> modificarCliente();
+			case 6 -> buscarUsuarioNombre();
 			case 0 -> System.out.println("Gracias por usar nuestra aplicacion");
 
 			default -> throw new IllegalArgumentException("Unexpected value: " + opc);
@@ -31,6 +34,28 @@ public class Aplicacion {
 
 		} while (opc != SALIR);
 
+	}
+
+	private static void CrearNuevoUsuario() {
+		var client = nuevoUsuario();
+		DAO.insertar(client);
+	}
+
+	private static void listaUsuarios() {
+		var clientes = DAO.obtenerTodos();
+		mostrarListaClientes(clientes);
+	}
+
+	private static void buscarUsuariosPorId() {
+		Long id = (long) Util.leerInt("Dime el id");
+		var cliente = DAO.obtenerPorId(id);
+		mostrarLineaProducto(cliente);
+	}
+
+	private static void buscarUsuarioNombre() {
+		var nombre = Util.leerCadena("Dime el nombre");
+		var cliente = DAO.obtenerPorNombreParcial(nombre);
+		mostrarListaClientes(cliente);
 	}
 
 	private static Object modificarCliente() {
@@ -44,25 +69,9 @@ public class Aplicacion {
 
 	private static void borrarUsuarioPorId() {
 		var id = Util.leerInt("Dime el id a borrar");
-		var cl = DAO.obtenerPorId((long)id);
+		var cl = DAO.obtenerPorId((long) id);
 		System.out.println(cl.toString());
 		DAO.borrar(cl.getIdUsuario());
-	}
-
-	private static void buscarUsuariosPorId() {
-		Long id = (long) Util.leerInt("Dime el id");
-		var cliente = DAO.obtenerPorId(id);
-		mostrarFichaProducto(cliente);
-	}
-
-	private static void mostrarFichaProducto(Cliente cliente) {
-		System.out.println(cliente.toString());
-
-	}
-
-	private static void listaUsuarios() {
-		var clientes = DAO.obtenerTodos();
-		mostrarListaClientes(clientes);
 	}
 
 	private static void mostrarListaClientes(Iterable<Cliente> clientes) {
@@ -73,11 +82,6 @@ public class Aplicacion {
 		System.out.println(p.toString());
 	}
 
-	private static void CrearNuevoUsuario() {
-		var client = nuevoUsuario();
-		DAO.insertar(client);
-	}
-
 	private static int menu() {
 		int respuesta = Util.leerInt("""
 				** M E N U **
@@ -86,6 +90,7 @@ public class Aplicacion {
 				3.-Buscar cliente por id
 				4.-Borrar cliente por id
 				5.-Modificar cliente
+				6.-Buscar por nombre
 				0.-SALIR
 				elige una opcion:
 				""");

@@ -1,7 +1,6 @@
 package com.projecto.java.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,11 +94,6 @@ public abstract class DaoClienteJdbc extends DaoJdbc implements DaoCliente {
 	protected Cliente ejecutarConsultaUno(String sql, Consumer<PreparedStatement> codigo) {
 		var i = ejecutarConsulta(sql, codigo).iterator();
 		return i.hasNext() ? i.next() : null;
-	}
-
-	private static Date cambiarADate(LocalDate fechaAlta) {
-		Date date = Date.valueOf(fechaAlta);
-		return date;
 	}
 
 }
