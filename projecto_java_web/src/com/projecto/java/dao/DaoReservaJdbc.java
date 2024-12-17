@@ -8,12 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-import com.projecto.java.entidad.Cliente;
 import com.projecto.java.entidad.EstadoReserva;
 import com.projecto.java.entidad.Reserva;
-import com.projecto.java.entidad.TipoUsuario;
-import com.projecto.java.entidad.UserPrivilege;
-import com.projecto.java.entidad.UserStatus;
 import com.projecto.java.exepcion.AccesoDatosException;
 
 public abstract class DaoReservaJdbc extends DaoJdbc implements DaoReserva {

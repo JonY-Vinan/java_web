@@ -5,8 +5,8 @@ import com.projecto.java.exepcion.AccesoDatosException;
 
 public class DaoReservaSQLite extends DaoReservaJdbc implements DaoReserva {
 
-	private static final String SQL_SELECT = ("SELECT * FROM reservas");
-	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE idUsuario = ?";
+	private static final String SQL_SELECT = ("SELECT * FROM Reservas");
+	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id = ?";
 	private static final String SQL_SELECT_NOMBRE = SQL_SELECT + " WHERE nombre LIKE ?";
 	private static final String SQL_SELECT_APELLIDO = SQL_SELECT + " WHERE apellido LIKE ?";
 	private static final String SQL_INSERT = "INSERT INTO Reservas (nombre, apellido, email, telefono, fechaReserva, hora, numeroPersonas, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
