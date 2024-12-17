@@ -24,23 +24,22 @@ public class ListadoServlet extends HttpServlet {
 		String sId = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
 
-		
 		ReservaNegocio negocio = GestionFactoria.getReservaNegocio();
 
 		String incrustacion = "";
 
 		if (sId == null) {
-			Iterable<Reserva> productos;
+			Iterable<Reserva> reservas;
 
 			if (nombre == null) {
-				productos = negocio.verReservas();
+				reservas = negocio.verReservas();
 			} else {
-				productos = negocio.buscarReservasPorNombre(nombre);
+				reservas = negocio.buscarReservasPorNombre(nombre);
 			}
 
 			incrustacion += "<ul>\n";
 
-			for (var p : productos) {
+			for (var p : reservas) {
 				incrustacion += "<li>" + p.getNombre() + "</li>\n";
 			}
 
