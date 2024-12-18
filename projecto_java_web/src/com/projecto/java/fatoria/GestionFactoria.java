@@ -32,8 +32,7 @@ public class GestionFactoria {
 			// daoCliente = (DaoCliente) Class.forName(daoClienteClase)
 			// .getConstructor(String.class, String.class, String.class).newInstance(url,
 			// user, pass);
-			daoReserva = (DaoReserva) Class.forName(daoReservaClase)
-					.getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
+			daoReserva = (DaoReserva) Class.forName(daoReservaClase).getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
 
 			reservaNegocio = new ReservaNegocioImpl();
 

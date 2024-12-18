@@ -13,13 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/Html/Desktop/Projectos/projectos/java_web/projecto_java_web/lib/sqlite-jdbc-3.47.1.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/projecto_java_web">
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/projecto_java_web">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

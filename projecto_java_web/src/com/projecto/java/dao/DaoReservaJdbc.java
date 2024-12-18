@@ -53,7 +53,7 @@ public abstract class DaoReservaJdbc extends DaoJdbc implements DaoReserva {
 
 			}
 			if (reserva.getNombre() != null && reserva.getId() != null) {
-				pst.setLong(10, reserva.getId());
+				pst.setLong(9, reserva.getId());
 			}
 
 			if (reserva.getNombre() == null && reserva.getId() != null) {

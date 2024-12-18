@@ -18,15 +18,11 @@ public class BorrarReservaAdminServlet extends HttpServlet {
 
 		String sId = request.getParameter("id");
 
-		if (sId != null) {
-			Long id = Long.parseLong(sId);
-			var reservas = GestionFactoria.getDaoCliente();
-			
-			request.setAttribute("reserva", reservas);
+		Long id = Long.parseLong(sId);
+		GestionFactoria.getAdminNegocio().borrarReserva(id);
+		
 
-		}
-
-		request.getRequestDispatcher("/WEB-INF/vistas/admin/reserva.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/admin/index");
 
 	}
 

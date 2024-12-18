@@ -1,6 +1,5 @@
 package com.projecto.java.negocio;
 
-import java.util.logging.Logger;
 
 import com.projecto.java.dao.DaoReserva;
 import com.projecto.java.entidad.Reserva;
@@ -8,7 +7,6 @@ import com.projecto.java.fatoria.GestionFactoria;
 
 public class AdminNegocioImpl implements AdminNegocio {
 
-	private static final Logger LOG = Logger.getLogger(AdminNegocioImpl.class.getName());
 	private static final DaoReserva DAO_RESERVA = GestionFactoria.getDaoReserva();
 
 	@Override
