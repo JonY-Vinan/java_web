@@ -3,6 +3,7 @@
 	<name>web_reserva</name>
 	<comment></comment>
 	<projects>
+		<project>projecto_java_web</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
