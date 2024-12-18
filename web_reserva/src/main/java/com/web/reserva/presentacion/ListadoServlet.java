@@ -45,13 +45,13 @@ public class ListadoServlet extends HttpServlet {
 
 			incrustacion += "</ul>\n";
 		} else {
-			var producto = negocio.buscarReservaPorId(Long.parseLong(sId));
+			var reserva = negocio.buscarReservaPorId(Long.parseLong(sId));
 
 			incrustacion += "<dl>\n";
 
-			incrustacion += "<dt>Nombre</dt><dd>" + producto.getNombre() + "</dd>\n";
-			incrustacion += "<dt>Email</dt><dd>" + producto.getEmail() + "</dd>\n";
-			incrustacion += "<dt>Telefono</dt><dd>" + producto.getTelefono() + "</dd>\n";
+			incrustacion += "<dt>Nombre</dt><dd>" + reserva.getNombre() + "</dd>\n";
+			incrustacion += "<dt>Email</dt><dd>" + reserva.getEmail() + "</dd>\n";
+			incrustacion += "<dt>Telefono</dt><dd>" + reserva.getTelefono() + "</dd>\n";
 
 			incrustacion += "</dl>\n";
 		}

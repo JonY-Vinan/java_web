@@ -106,6 +106,8 @@ public class Reserva {
 		this.estado = estado;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellido, email, estado, fechaReserva, hora, id, nombre, numeroPersonas, telefono);

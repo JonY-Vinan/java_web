@@ -20,15 +20,15 @@ public class GestionFactoria {
 			Properties props = new Properties();
 			props.load(GestionFactoria.class.getClassLoader().getResourceAsStream("configuracion.properties"));
 
-			var daoClienteClase = props.getProperty("dao.cliente.implementacion");
+			//var daoClienteClase = props.getProperty("dao.cliente.implementacion");
 			var daoReservaClase = props.getProperty("dao.reserva.implementacion");
 
 			var url = props.getProperty("dao.url");
 			var user = props.getProperty("dao.user");
 			var pass = props.getProperty("dao.pass");
 
-			daoCliente = (DaoCliente) Class.forName(daoClienteClase)
-					.getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
+		//	daoCliente = (DaoCliente) Class.forName(daoClienteClase)
+		//			.getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
 			daoReserva = (DaoReserva) Class.forName(daoReservaClase)
 					.getConstructor(String.class, String.class, String.class).newInstance(url, user, pass);
 
