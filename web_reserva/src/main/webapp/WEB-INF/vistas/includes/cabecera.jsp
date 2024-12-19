@@ -4,6 +4,7 @@
 <!doctype html>
 <html lang="es">
 <head>
+<base href="${pageContext.request.contextPath}/">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Almacén</title>
@@ -15,7 +16,8 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
+	<nav class="navbar navbar-expand-lg bg-dark sticky-top"
+		data-bs-theme="dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index">Restaurante</a>
 			<button class="navbar-toggler" type="button"
@@ -28,8 +30,11 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link" href="index">Principal</a></li>
 				</ul>
+				<ul class="navbar-nav mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="admin/">Administración</a></li>
+				</ul>
 			</div>
 		</div>
 	</nav>
-	
-	<%="<main class='container mt-3 mb-5 pb-5'>" %>
+
+	<%="<main class='container mt-3 mb-5 pb-5'>"%>

@@ -22,10 +22,9 @@
 				<td>${p.nombre}</td>
 				<td>${p.estado}</td>
 				<td>${p.fechaReserva}</td>
-				<td><a href="reserva?id=${p.id}" class="btn btn-primary btn-sm">Editar</a>
-					<a
-					onclick="javascript:return confirm('¿Estás seguro de que quieres borrar ${p.nombre}?')"
-					href="reserva/borrar?id=${p.id}" class="btn btn-danger btn-sm">Borrar</a>
+				<td><a href="admin/reserva?id=${p.id}" class="btn btn-primary btn-sm">Editar</a> 
+					<a onclick="javascript:return confirm('¿Estás seguro de que quieres borrar ${p.nombre}?')" href="admin/reserva/borrar?id=${p.id}"
+					class="btn btn-danger btn-sm">Borrar</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -37,7 +36,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td><a href="#" class="btn btn-primary btn-sm">Añadir</a></td>
+			<td><a href="admin/reserva" class="btn btn-primary btn-sm">Añadir</a></td>
 		</tr>
 	</tfoot>
 </table>
