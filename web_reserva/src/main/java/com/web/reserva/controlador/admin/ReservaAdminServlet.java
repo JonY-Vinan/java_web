@@ -7,17 +7,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
 import com.projecto.java.entidad.EstadoReserva;
 import com.projecto.java.entidad.Reserva;
 import com.projecto.java.fatoria.GestionFactoria;
 
 @WebServlet("/admin/reserva")
-public class RerevaAdminServlet extends HttpServlet {
+public class ReservaAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG = Logger.getLogger(ReservaAdminServlet.class.getName());
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String sId = request.getParameter("id");
 
@@ -27,7 +28,7 @@ public class RerevaAdminServlet extends HttpServlet {
 			request.setAttribute("reserva", reservas);
 
 		}
-
+		request.setAttribute("hoy", LocalDate.now());
 		request.getRequestDispatcher("/WEB-INF/vistas/admin/reserva.jsp").forward(request, response);
 
 	}
@@ -58,10 +59,18 @@ public class RerevaAdminServlet extends HttpServlet {
 
 		var reserva = new Reserva(id, nombre, apellido, email, telefono, fechaReserva, sHora, numeroPersonas, estado);
 		// Ejecutar la lógica de negocio
+		if (!reserva.isCorrecto()) {
+			LOG.info(reserva.toString());
 
+			request.setAttribute("reserva", reserva);
+
+			request.getRequestDispatcher("/WEB-INF/vistas/admin/reserva.jsp").forward(request, response);
+
+			return;
+		}
 		var negocio = GestionFactoria.getAdminNegocio();
 
-		if (id == null) {
+		if (reserva.getId() == null) {
 			negocio.altaReserva(reserva);
 		} else {
 			negocio.modificarReserva(reserva);
