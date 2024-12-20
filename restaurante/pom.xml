@@ -50,5 +50,6 @@
     <module>entidades</module>
     <module>accesoadatos</module>
     <module>fabrica</module>
+    <module>com.restaurante.negocio</module>
   </modules>
 </project>
